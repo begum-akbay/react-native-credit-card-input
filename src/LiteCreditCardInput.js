@@ -139,11 +139,11 @@ export default class LiteCreditCardInput extends Component {
   }
 
   render() {
-    const { focused, values: { number }, inputStyle, status: { number: numberStatus } } = this.props;
+    const { focused, values: { number }, inputStyle, status: { number: numberStatus }, containerStyle, cardIconStyle } = this.props;
     const showRightPart = focused && focused !== "number";
 
     return (
-      <View style={s.container}>
+      <View style={[s.container, containerStyle]}>
         <View style={[
           s.leftPart,
           showRightPart ? s.hidden : s.expanded,
@@ -153,7 +153,7 @@ export default class LiteCreditCardInput extends Component {
             containerStyle={s.numberInput} />
         </View>
         <TouchableOpacity onPress={showRightPart ? this._focusNumber : this._focusExpiry }>
-          <Image style={s.icon} source={Icons[this._iconToShow()]} />
+          <Image style={[s.icon, cardIconStyle]} source={Icons[this._iconToShow()]} />
         </TouchableOpacity>
         <View style={[
           s.rightPart,
